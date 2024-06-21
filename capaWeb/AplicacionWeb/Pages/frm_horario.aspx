@@ -26,7 +26,7 @@
     <div class="contenedor">
         <table class="auto-style16">
             <tr>
-                <td colspan="4" Class="title">Mantenimiento de Horarios</td>
+                <td colspan="4" Class="title">Transacción de Horarios</td>
             </tr>
             <tr>
                 <td class="auto-style7">Codigo:</td>

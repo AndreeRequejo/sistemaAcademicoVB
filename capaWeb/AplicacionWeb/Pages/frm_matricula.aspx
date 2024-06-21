@@ -25,7 +25,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-    <h1 class="text-center">Mantenimiento Matrícula</h1>
+    <h1 class="text-center">Transacción Matrícula</h1>
     <div class="form-group row">
         <label for="matriculaID" class="col-sm-2 col-form-label">Matrícula ID:</label>
         <div class="col-sm-10">

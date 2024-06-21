@@ -47,7 +47,7 @@
     <div class="contenedor">
         <table class="auto-style1">
             <tr>
-                <td colspan="4" class="title">Grupos Horarios</td>
+                <td colspan="4" class="title">Transacción Horarios</td>
             </tr>
             <tr>
                 <td class="auto-style5">Denominación:</td>
