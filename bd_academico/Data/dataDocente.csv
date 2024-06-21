@@ -1,0 +1,30 @@
+"docente_id","tipo_documento","numero_documento_docente","tipo_docente","ape_paterno","ape_materno","nombres","ultimo_grado_academico","fecha_registro","estado_docente","ubigeo_id"
+67,"1","71051728","TP","Del Castillo","Castro","Consuelo Ivonne","2","2003-09-20",True,NULL
+84,"1","19361064","TP","Diaz","Espino","Miguel Angel","2","2012-04-10",True,NULL
+113,"1","20581759","TC","Leon","Tenorio","Gregorio Manuel","2","2016-08-09",True,NULL
+115,"1","50291846","TP","Lip","Curo","Guadalupe Teresa","1","2005-01-28",True,NULL
+130,"1","10295174","TP","Lujan","Segura","Edwar Glorimer","2","2007-05-14",True,NULL
+181,"1","38298801","TC","Iman","Espinoza","Ricardo David","2","2004-01-01",True,NULL
+197,"1","73018566","TP","Barreto","Stein","Karla Vanessa","2","2018-11-19",True,NULL
+247,"1","102955618","TP","Alarcón","García","Roger Ernesto","2","2010-03-06",True,NULL
+272,"1","194810492","TP","Aquino","Trujillo","Jury Yesenia","2","2007-10-10",True,NULL
+396,"1","49194481","TC","Torres","Benavides","Juan Antonio","2","2005-03-02",True,NULL
+528,"1","105923819","TC","Vilchez","Rivas","Marlon Eugenio","2","2019-09-10",True,NULL
+541,"1","20481127","TP","Noblecilla","Vinces","William Alfredo","1","2004-11-11",True,NULL
+545,"1","52618491","TC","Nicho","Cordova","Ernesto Ludwin","1","2008-01-05",True,NULL
+599,"1","483091673","TC","Mera","Montenegro","Huilder Juanito","2","2005-03-06",True,NULL
+4,"1","16761275","TH","Castillo","Zumaran","Segundo Jose","2","2022-10-01",True,"130101"
+12,"1","999999999","TP","zu¤e","Bispo","Luis Agusto","2","2022-10-10",True,NULL
+13,"1","1111111","TP","Mera","Rodas","Armando","2","2022-10-10",True,NULL
+14,"1","16254839","TP","Li","Vega","Fiorella Vanessa","2","2022-10-10",True,NULL
+15,"1","22222222","TP","Rojas","Cerna","Miguel Angel","2","2022-10-10",True,NULL
+17,"1","--------","TP","Limo","Figueroa","David Fernando","2","2022-10-10",True,NULL
+18,"1","77523629","TP","Perez","Guevara","Luis Enrique","2","2022-10-10",True,NULL
+19,"1","8787878","TP","Aranguri","Garcia","Maria Ysabel","2","2022-10-10",True,NULL
+20,"1","787878","TP","Zelada","Valdivieso","Hector","2","2022-10-10",True,NULL
+21,"1","75894754","TP","Reyes","Burgos","Karla Cecilia","2","2022-10-10",True,NULL
+22,"1","12345678","TP","Chacarry","Chankay","Mariana","2","2022-10-10",True,NULL
+23,"1","77523688","TP","Cachay","Maco","Junior Eugenio","2","2022-10-10",True,NULL
+24,"1","7872878","TP","Cieza","Dominguez","Marco Antonio","2","2022-10-10",True,NULL
+25,"1","xxxxxx","TP","Serquen","Yparraguirre","Oscar Alex","2","2022-10-10",True,NULL
+27,"1","14585692","TH","Diaz","Vidarte","Miguel Orlando","2","2022-10-10",True,NULL
