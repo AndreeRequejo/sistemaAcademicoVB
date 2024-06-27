@@ -5,13 +5,19 @@ Public Class frm_grupo1
     Private objCurso As New Curso
     Private objSemestre As New Semestre
     Private objGrupo As New Grupo
+    Private objFacultad As New Facultad
+    Private objEscuela As New Escuela
+    Private objTipoAmbiente As New TipoAmbiente
+    Private objAmbiente As New Ambiente
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             controles_iniciales()
-            llenarCboCurso()
+            llenarCboFacultad()
             llenarCboDocente()
-            llenarCboSemestre()
+            llenarTxtSemestre() ' Cambiado para llenar el TextBox del semestre
+            llenarCboDias()
+            llenarCboTipoAmbiente()
             refrescar_grilla()
         End If
     End Sub
@@ -25,8 +31,8 @@ Public Class frm_grupo1
     End Sub
 
     Public Sub refrescar_grilla()
-        gvGrupos.DataSource = objGrupo.listar_grupos()
-        gvGrupos.DataBind()
+        'gvGrupos.DataSource = objGrupo.listar_grupos()
+        'gvGrupos.DataBind()
     End Sub
 
     Private Sub gvGrupos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gvGrupos.SelectedIndexChanged
@@ -44,7 +50,7 @@ Public Class frm_grupo1
             Else
                 chkEstado.Checked = True
             End If
-            cboSemestre.SelectedValue = gvGrupos.SelectedRow.Cells(6).Text.ToString
+            txtSemestre.Text = gvGrupos.SelectedRow.Cells(6).Text.ToString ' Cambiado para usar el TextBox del semestre
             cboDocente.SelectedValue = objDocente.obtener_idDocente(gvGrupos.SelectedRow.Cells(5).Text.ToString)
             cboCurso.SelectedValue = objCurso.obtener_idCurso(gvGrupos.SelectedRow.Cells(4).Text.ToString)
 
@@ -53,15 +59,50 @@ Public Class frm_grupo1
         End Try
     End Sub
 
+    Public Sub llenarCboFacultad()
+        Try
+            cboFacultad.DataSource = objFacultad.listar_facultades()
+            cboFacultad.DataTextField = "nombre_facultad"
+            cboFacultad.DataValueField = "facultad_id"
+            cboFacultad.DataBind()
+            cboFacultad.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+        Catch ex As Exception
+            MsgBox("Error al listar facultades")
+        End Try
+    End Sub
+
+    Public Sub llenarCboEscuela()
+        Try
+            cboEscuela.DataSource = objEscuela.listar_escuelas_1(Convert.ToInt32(cboFacultad.SelectedValue))
+            cboEscuela.DataTextField = "nombre_escuela"
+            cboEscuela.DataValueField = "escuela_id"
+            cboEscuela.DataBind()
+            cboEscuela.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+        Catch ex As Exception
+            MsgBox("Error al listar escuelas")
+        End Try
+    End Sub
+
+    Public Sub llenarCboCiclo()
+        Try
+            cboCiclo.DataSource = objEscuela.listar_ciclos(cboEscuela.SelectedValue)
+            cboCiclo.DataTextField = "numero_ciclo"
+            cboCiclo.DataValueField = "ciclo_id"
+            cboCiclo.DataBind()
+        Catch ex As Exception
+            MsgBox("Error al listar ciclos")
+        End Try
+    End Sub
+
     Public Sub llenarCboCurso()
         Try
-            cboCurso.DataSource = objCurso.listar_cursos()
+            cboCurso.DataSource = objCurso.listar_cursos_ciclo(cboCiclo.SelectedValue)
             cboCurso.DataTextField = "nombre_curso"
             cboCurso.DataValueField = "curso_id"
             cboCurso.DataBind()
             cboCurso.Items.Insert(0, New ListItem("Seleccione una opcion", "0"))
         Catch ex As Exception
-            MsgBox("Error")
+            MsgBox("Error al listar cursos")
         End Try
     End Sub
 
@@ -73,46 +114,94 @@ Public Class frm_grupo1
             cboDocente.DataBind()
             cboDocente.Items.Insert(0, New ListItem("Seleccione una opcion", "0"))
         Catch ex As Exception
-            MsgBox("Error")
+            MsgBox("Error al listar docentes")
         End Try
     End Sub
 
-    Public Sub llenarCboSemestre()
+    Public Sub llenarTxtSemestre()
         Try
-            cboSemestre.DataSource = objCurso.listar_semestre()
-            cboSemestre.DataTextField = "codigo_semestre"
-            cboSemestre.DataValueField = "codigo_semestre"
-            cboSemestre.DataBind()
-            cboSemestre.Items.Insert(0, New ListItem("Seleccione una opcion", "0"))
+            ' Supongamos que solo hay un semestre que queremos mostrar, se puede obtener de la base de datos
+            txtSemestre.Text = objSemestre.mostrar_semestre_actual()
+            txtSemestre.Enabled = False ' Asegurándose de que el campo esté deshabilitado
+        Catch ex As Exception
+            MsgBox("Error al listar el semestre")
+        End Try
+    End Sub
+
+    Public Sub llenarCboDias()
+        Try
+            cboDias.Items.Add(New ListItem("Lunes", "1"))
+            cboDias.Items.Add(New ListItem("Martes", "2"))
+            cboDias.Items.Add(New ListItem("Miércoles", "3"))
+            cboDias.Items.Add(New ListItem("Jueves", "4"))
+            cboDias.Items.Add(New ListItem("Viernes", "5"))
+            cboDias.Items.Add(New ListItem("Sábado", "6"))
         Catch ex As Exception
             MsgBox("Error")
         End Try
     End Sub
 
+    Public Sub llenarCboTipoAmbiente()
+        Try
+            cboTipoAmb.DataSource = objTipoAmbiente.listar_tipoAmbientes()
+            cboTipoAmb.DataTextField = "descripcion_tipoambiente"
+            cboTipoAmb.DataValueField = "tipoambiente_id"
+            cboTipoAmb.DataBind()
+            cboTipoAmb.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+        Catch ex As Exception
+            MsgBox("Error al listar tipos de ambiente")
+        End Try
+    End Sub
+
+    Public Sub llenarCboAmbiente()
+        Try
+            cboAmbiente.DataSource = objAmbiente.listar_ambiente(Convert.ToInt32(cboTipoAmb.SelectedValue))
+            cboAmbiente.DataTextField = "descripcion_ambiente"
+            cboAmbiente.DataValueField = "ambiente_id"
+            cboAmbiente.DataBind()
+        Catch ex As Exception
+            MsgBox("Error al listar ambientes")
+        End Try
+    End Sub
+
+    Private Sub cboFacultad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboFacultad.SelectedIndexChanged
+        llenarCboEscuela()
+    End Sub
+
+    Private Sub cboEscuela_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboEscuela.SelectedIndexChanged
+        llenarCboCiclo()
+        llenarCboCurso()
+    End Sub
+
+    Private Sub cboCiclo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCiclo.SelectedIndexChanged
+        llenarCboCurso()
+    End Sub
+
+    Private Sub cboTipoAmb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTipoAmb.SelectedIndexChanged
+        llenarCboAmbiente()
+    End Sub
+
     Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         txtDenominacion.Text = ""
         txtVacantes.Text = ""
-        txtVacantes.Text = ""
         cboDocente.ClearSelection()
-        cboSemestre.ClearSelection()
         cboCurso.ClearSelection()
         btnNuevo.Enabled = False
         btnGrabar.Enabled = True
         btnModificar.Enabled = True
         btnEliminar.Enabled = True
         btnCancelar.Enabled = True
+        chkEstado.Checked = True
     End Sub
 
     Protected Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Try
-
             Dim idCurso As Integer = cboCurso.SelectedValue
             Dim idDocente As Integer = cboDocente.SelectedValue
-            Dim idSemestre As String = cboSemestre.SelectedValue
+            Dim idSemestre As String = txtSemestre.Text ' Cambiado para usar el TextBox del semestre
             Dim estadoGrupo As Integer = chkEstado.Checked
 
-            Dim retorno As Integer = objGrupo.agregar_grupo(txtDenominacion.Text, Convert.ToInt32(txtVacantes.Text), estadoGrupo,
-                                     idCurso, idDocente, idSemestre)
+            Dim retorno As Integer = objGrupo.agregar_grupo(txtDenominacion.Text, Convert.ToInt32(txtVacantes.Text), estadoGrupo, idCurso, idDocente, idSemestre)
 
             If retorno = 0 Then
                 MsgBox("Grupo registrado")
@@ -130,11 +219,10 @@ Public Class frm_grupo1
         Try
             Dim idCurso As Integer = cboCurso.SelectedValue
             Dim idDocente As Integer = cboDocente.SelectedValue
-            Dim idSemestre As String = cboSemestre.SelectedValue
+            Dim idSemestre As String = txtSemestre.Text ' Cambiado para usar el TextBox del semestre
             Dim estadoGrupo As Integer = chkEstado.Checked
 
-            Dim retorno As Integer = objGrupo.modificar_grupo(Integer.Parse(txtIdGrupo.Text), txtDenominacion.Text, Convert.ToInt32(txtVacantes.Text), estadoGrupo,
-                                     idCurso, idDocente, idSemestre)
+            Dim retorno As Integer = objGrupo.modificar_grupo(Integer.Parse(txtIdGrupo.Text), txtDenominacion.Text, Convert.ToInt32(txtVacantes.Text), estadoGrupo, idCurso, idDocente, idSemestre)
 
             If retorno = 0 Then
                 MsgBox("Grupo modificado")
@@ -173,5 +261,4 @@ Public Class frm_grupo1
         btnEliminar.Enabled = False
         btnCancelar.Enabled = False
     End Sub
-
 End Class

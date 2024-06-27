@@ -46,4 +46,15 @@ Public Class Semestre
             Return -1
         End Try
     End Function
+
+    Public Function mostrar_semestre_actual() As String
+        Dim sql As String
+        sql = "select codigo_semestre from semestre where estado_semestre = 1"
+        Dim dt As DataTable = objConexion.consultaSQL(sql)
+        If dt.Rows.Count > 0 Then
+            Return dt.Rows(0)("codigo_semestre").ToString()
+        Else
+            Return String.Empty
+        End If
+    End Function
 End Class

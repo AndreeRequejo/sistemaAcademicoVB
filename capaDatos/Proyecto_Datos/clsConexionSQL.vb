@@ -11,7 +11,7 @@ Public Class clsConexionSQL
         objCadena.DataSource = "localhost"
         objCadena.InitialCatalog = "bd_academico"
         objCadena.UserID = "sa"
-        objCadena.Password = "1234"
+        objCadena.Password = "13102001"
         objCadena.IntegratedSecurity = True 'True:windows False:SQL Server'
         objConexion.ConnectionString = objCadena.ToString()
     End Sub

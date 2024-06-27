@@ -131,7 +131,6 @@ Public Class frm_horario
         End Try
     End Sub
 
-
     Public Sub llenarCboSemestre()
         Try
             cboSemestre.DataSource = objCurso.listar_semestre()
@@ -168,7 +167,6 @@ Public Class frm_horario
 
     Public Sub llenarCboAmbiente()
         Try
-            cboAmbiente.DataSource = objAmbiente.listar_ambiente()
             cboAmbiente.DataTextField = "descripcion_ambiente"
             cboAmbiente.DataValueField = "ambiente_id"
             cboAmbiente.DataBind()

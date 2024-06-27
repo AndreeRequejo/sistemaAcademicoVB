@@ -6,7 +6,7 @@ Public Class TipoAmbiente
 
     Public Function listar_tipoAmbientes() As DataTable
         Dim sql As String
-        sql = "select descripcion_tipoambiente, abreviatura, vigencia from tipo_ambiente"
+        sql = "select tipoambiente_id, descripcion_tipoambiente, abreviatura, vigencia from tipo_ambiente"
         Return objConexion.consultaSQL(sql)
     End Function
 

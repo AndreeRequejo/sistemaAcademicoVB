@@ -3,10 +3,10 @@ Public Class Ambiente
     Private objConexion As New clsConexionSQL
     Private objAmbiente As New ADO_Ambiente
 
-    Public Function listar_ambiente() As DataTable
+    Public Function listar_ambiente(ByVal idTA As Integer) As DataTable
         Dim sql As String
         sql = " select ambiente_id, tipoambiente_id ,descripcion_ambiente, capacidad, estado
-                from ambiente;"
+                from ambiente where estado='Habilitado' and tipoambiente_id = " & idTA & ";"
         Return objConexion.consultaSQL(sql)
     End Function
 
