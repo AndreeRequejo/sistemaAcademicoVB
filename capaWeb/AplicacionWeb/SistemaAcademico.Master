@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" Debug="True" AutoEventWireup="false" CodeBehind="SistemaAcademico.master.vb" Inherits="AplicacionWeb.SistemaAcademico" %>
+﻿<%@ Master Language="VB" Debug="True" AutoEventWireup="false" CodeBehind="SistemaAcademico.Master.vb" Inherits="AplicacionWeb.SistemaAcademico" %>
 
 <!DOCTYPE html>
 

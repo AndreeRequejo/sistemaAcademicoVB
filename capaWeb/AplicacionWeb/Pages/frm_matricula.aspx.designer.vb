@@ -14,13 +14,22 @@ Option Explicit On
 Partial Public Class frm_matricula1
 
     '''<summary>
-    '''Control matriculaID.
+    '''Control btnBuscar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents matriculaID As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control btnNuevo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Control fechaMatricula.
@@ -32,49 +41,67 @@ Partial Public Class frm_matricula1
     Protected WithEvents fechaMatricula As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control horaMatricula.
+    '''Control txtSemestre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents horaMatricula As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtSemestre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control alumnoID.
+    '''Control chkEstado.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents alumnoID As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents chkEstado As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
-    '''Control codigoSemestre.
+    '''Control TextBox3.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents codigoSemestre As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents TextBox3 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control tipoMatricula.
+    '''Control TextBox5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tipoMatricula As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents TextBox5 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control btnNuevo.
+    '''Control ciclo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ciclo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control CheckBox1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''Control gvHorarios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvHorarios As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''Control btnGrabar.
