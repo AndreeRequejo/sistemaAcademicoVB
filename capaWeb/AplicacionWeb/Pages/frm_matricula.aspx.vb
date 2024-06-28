@@ -7,7 +7,40 @@ Public Class frm_matricula1
         If Not IsPostBack Then
             obtenerFechaActual()
             llenarTxtSemestre()
+            grillaCursosVacia()
         End If
+    End Sub
+
+    Public Sub grillaCursosVacia()
+        Dim dt As New DataTable()
+        dt.Columns.Add("detalle_id")
+        dt.Columns.Add("denominacion")
+        dt.Columns.Add("hora_inicio")
+        dt.Columns.Add("hora_fin")
+        dt.Columns.Add("dia")
+
+        If gvDetalle.Rows.Count = 0 Then
+            dt.Rows.Add(dt.NewRow())
+        End If
+
+        gvDetalle.DataSource = dt
+        gvDetalle.DataBind()
+    End Sub
+
+    Public Sub grillaMatriculaVacia()
+        Dim dt As New DataTable()
+        dt.Columns.Add("detalle_id")
+        dt.Columns.Add("denominacion")
+        dt.Columns.Add("hora_inicio")
+        dt.Columns.Add("hora_fin")
+        dt.Columns.Add("dia")
+
+        If gvMatricula.Rows.Count = 0 Then
+            dt.Rows.Add(dt.NewRow())
+        End If
+
+        gvDetalle.DataSource = dt
+        gvDetalle.DataBind()
     End Sub
 
     Public Sub obtenerFechaActual()
@@ -23,5 +56,9 @@ Public Class frm_matricula1
         Catch ex As Exception
             MsgBox("Error al listar el semestre")
         End Try
+    End Sub
+
+    Protected Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
+
     End Sub
 End Class

@@ -86,22 +86,22 @@ Partial Public Class frm_matricula1
     Protected WithEvents ciclo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control CheckBox1.
+    '''Control cboCurso.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents cboCurso As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control gvHorarios.
+    '''Control gvDetalle.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gvHorarios As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents gvDetalle As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''Control btnGrabar.
@@ -111,15 +111,6 @@ Partial Public Class frm_matricula1
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnGrabar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''Control btnCancelar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Control btnModificar.
@@ -138,4 +129,31 @@ Partial Public Class frm_matricula1
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnEliminar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control btnCancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control gvGrupo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvGrupo As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Control gvDetalleMatricula.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvDetalleMatricula As Global.System.Web.UI.WebControls.GridView
 End Class
