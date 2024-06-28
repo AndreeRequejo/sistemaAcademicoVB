@@ -35,8 +35,8 @@
         label {
             font-weight: bold;
         }
-        #btnNuevo {
-            width: 50px;
+        .btnBuscar, .btnNuevo{
+            width: 7rem;
         }
     </style>
 </asp:Content>
@@ -45,15 +45,15 @@
         <h1 class="text-center mt-3 mb-3">Transacción Matrícula</h1>
         <div class="row">
             <div class="col-6">
-                <div class="mb-3 d-flex justify-content-between">
+                <div class="row mb-3">
                     <div class="col-7">
-                        <input type="text" class="form-control" placeholder="Estudiante" aria-label="City">
+                        <input type="text" class="form-control" placeholder="Estudiante" aria-label="City" id="txtEstudiante">
                     </div>
-                    <div class="col-2">
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-secondary" />
+                    <div class="col-auto">
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-secondary btnBuscar" />
                     </div>
-                    <div class="col-3">
-                        <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary" />
+                    <div class="col-auto">
+                        <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary btnNuevo" />
                     </div>
                 </div>
                 <fieldset class="p-3 mb-3">
