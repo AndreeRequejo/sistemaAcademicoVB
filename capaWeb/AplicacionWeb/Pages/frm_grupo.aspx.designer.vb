@@ -59,24 +59,6 @@ Partial Public Class frm_grupo1
     Protected WithEvents cboCiclo As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control txtVacantes.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtVacantes As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control cboCurso.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents cboCurso As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
     '''Control txtDenominacion.
     '''</summary>
     '''<remarks>
@@ -86,13 +68,13 @@ Partial Public Class frm_grupo1
     Protected WithEvents txtDenominacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control cboDocente.
+    '''Control txtVacantes.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents cboDocente As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtVacantes As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control chkEstado.
@@ -104,13 +86,49 @@ Partial Public Class frm_grupo1
     Protected WithEvents chkEstado As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''Control cboCurso.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents cboCurso As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control btnBuscar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control btnBuscar1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnBuscar1 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control cboDocente.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents cboDocente As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Control btnNuevo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnGrabar.
@@ -119,7 +137,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnGrabar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnGrabar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnModificar.
@@ -128,7 +146,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnEliminar.
@@ -137,7 +155,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnEliminar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnEliminar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnCancelar.
@@ -146,7 +164,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCancelar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control gvGrupos.
@@ -212,13 +230,31 @@ Partial Public Class frm_grupo1
     Protected WithEvents txtGrupo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control txtHorario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtHorario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control btnNuevoH.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnNuevoH As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control btnGrabarH.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnGrabarH As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnGrabarH As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnModificarH.
@@ -227,7 +263,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnModificarH As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnModificarH As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnEliminarH.
@@ -236,7 +272,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnEliminarH As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnEliminarH As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btnCancelarH.
@@ -245,7 +281,7 @@ Partial Public Class frm_grupo1
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnCancelarH As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCancelarH As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control gvHorarios.

@@ -49,7 +49,7 @@ Public Class Semestre
 
     Public Function mostrar_semestre_actual() As String
         Dim sql As String
-        sql = "select codigo_semestre from semestre where estado_semestre = 1"
+        sql = "select codigo_semestre from semestre where estado_semestre = 1 order by codigo_semestre desc"
         Dim dt As DataTable = objConexion.consultaSQL(sql)
         If dt.Rows.Count > 0 Then
             Return dt.Rows(0)("codigo_semestre").ToString()
