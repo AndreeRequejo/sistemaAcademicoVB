@@ -62,9 +62,23 @@ Public Class frm_matricula1
             cboCurso.Enabled = True
             btnGrabarDetalle.Enabled = True
             btnCancelarDetalle.Enabled = True
-        Catch ex As Exception
 
+            'Lógica para obtener los cursos a llevar por el estudiante'
+            cboCurso.DataSource = objDetMatricula.obtenerAsignaturasPorCursar(txtEstudiante.Text)
+            cboCurso.DataTextField = "nombre_curso"
+            cboCurso.DataValueField = "curso_id"
+            cboCurso.DataBind()
+            cboCurso.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+
+        Catch ex As Exception
+            MsgBox("Ocurrio un Error al procesar la solicitud")
         End Try
+    End Sub
+
+    Private Sub cboCurso_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCurso.SelectedIndexChanged
+        Dim cursoId As Integer = cboCurso.SelectedValue
+        gvGrupo.DataSource = objDetMatricula.obtenerGruposCurso(cursoId)
+        gvGrupo.DataBind()
     End Sub
 
     Protected Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
@@ -187,7 +201,7 @@ Public Class frm_matricula1
 
     Public Sub grillaCursosVacia()
         Dim dt As New DataTable()
-        dt.Columns.Add("detalle_id")
+        dt.Columns.Add("grupo_id")
         dt.Columns.Add("denominacion")
         dt.Columns.Add("hora_inicio")
         dt.Columns.Add("hora_fin")

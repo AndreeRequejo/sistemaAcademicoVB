@@ -22,6 +22,32 @@ Public Class DetalleMatricula
         Return objConexion.consultaSQL(sql)
     End Function
 
+    Public Function obtenerAsignaturasPorCursar(ByVal dniEstud As Integer) As DataTable
+        Dim sql As String
+        sql = "SELECT * FROM fn_cursos_proximos ('" & dniEstud & "')"
+        Return objConexion.consultaSQL(sql)
+    End Function
+
+    Public Function obtenerGruposCurso(ByVal cursoId As Integer) As DataTable
+        Dim sql As String
+        sql = "SELECT g.grupo_id, denominacion, CONVERT(VARCHAR(5), h.h_inicio, 108) as hora_fin, CONVERT(VARCHAR(5), h.h_final, 108) as hora_inicio, 
+                CASE 
+                   WHEN dia = 1 THEN 'Lunes'
+                   WHEN dia = 2 THEN 'Martes'
+                   WHEN dia = 3 THEN 'Miércoles'
+                   WHEN dia = 4 THEN 'Jueves'
+                   WHEN dia = 5 THEN 'Viernes'
+                   WHEN dia = 6 THEN 'Sábado'
+                   WHEN dia = 7 THEN 'Domingo'
+                END AS dia
+                FROM grupo g
+                INNER JOIN horario h ON h.grupo_id = g.grupo_id
+                INNER JOIN docente d ON d.docente_id = g.docente_id
+                INNER JOIN curso c ON c.curso_id = g.curso_id
+                WHERE g.semestre_id = '2024-1' AND c.curso_id = " & cursoId
+        Return objConexion.consultaSQL(sql)
+    End Function
+
     Public Function agregar_detalle_matricula(ByVal matricula_id As Integer, ByVal grupo_id As Integer) As Integer
         Try
             Return objDetalle.pa_agregar_detalle_matricula(matricula_id, grupo_id)

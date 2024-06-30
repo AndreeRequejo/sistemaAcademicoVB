@@ -103,7 +103,7 @@
                         <div class="col-12 mt-3">
                             <asp:GridView ID="gvGrupo" CssClass="table table-bordered" runat="server" Width="600px" AutoGenerateColumns="False" Height="100px">
                                 <Columns>
-                                    <asp:BoundField DataField="detalle_id" HeaderText="ID" />
+                                    <asp:BoundField DataField="grupo_id" HeaderText="ID" />
                                     <asp:BoundField DataField="denominacion" HeaderText="Grupo" />
                                     <asp:BoundField DataField="hora_inicio" HeaderText="Hr. Inicio" />
                                     <asp:BoundField DataField="hora_fin" HeaderText="Hr. Fin" />
