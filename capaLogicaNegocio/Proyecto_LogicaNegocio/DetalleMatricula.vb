@@ -30,7 +30,7 @@ Public Class DetalleMatricula
 
     Public Function obtenerGruposCurso(ByVal cursoId As Integer) As DataTable
         Dim sql As String
-        sql = "SELECT g.grupo_id, denominacion, CONVERT(VARCHAR(5), h.h_inicio, 108) as hora_fin, CONVERT(VARCHAR(5), h.h_final, 108) as hora_inicio, 
+        sql = "SELECT g.grupo_id, denominacion, CONVERT(VARCHAR(5), h.h_inicio, 108) as hora_inicio, CONVERT(VARCHAR(5), h.h_final, 108) as hora_fin, 
                 CASE 
                    WHEN dia = 1 THEN 'Lunes'
                    WHEN dia = 2 THEN 'Martes'

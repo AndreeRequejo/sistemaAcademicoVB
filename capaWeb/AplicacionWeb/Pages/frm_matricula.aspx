@@ -113,10 +113,14 @@
                             </asp:GridView>
                         </div>
                         <div class="col-12 d-flex justify-content-between">
-                            <asp:Button ID="btnGrabarDetalle" runat="server" Text="Agregar" CssClass="btn btn-success" />
-                            <asp:Button ID="btnModificarDetalle" runat="server" Text="Modificar" CssClass="btn btn-warning" />
-                            <asp:Button ID="btnEliminarDetalle" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
-                            <asp:Button ID="btnCancelarDetalle" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />
+                            <div>
+                                <asp:TextBox id="txtNota" runat="server" aria-label="Nota" placeholder="Nota" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div>
+                                <asp:Button ID="btnModificarDetalle" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                                <asp:Button ID="btnEliminarDetalle" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
+                                <asp:Button ID="btnCancelarDetalle" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />
+                            </div>
                         </div>
                     </div>
                 </fieldset>

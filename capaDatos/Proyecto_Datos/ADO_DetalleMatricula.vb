@@ -17,7 +17,6 @@ Public Class ADO_DetalleMatricula
             objComando.ExecuteNonQuery()
             Dim retorno As Integer = Convert.ToInt32(objComando.Parameters("@retorno").Value)
             objConexion.cerrarConexion()
-            MessageBox.Show(retorno)
             Return retorno
         Catch ex As Exception
             MessageBox.Show("Error al procesar solicitud " & ex.Message, "ADO")

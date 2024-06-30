@@ -8,11 +8,11 @@ Public Class clsConexionSQL
 
     'Constructor:'
     Sub New()
-        objCadena.DataSource = "LAPTOP-PGBU6MEJ\SQLEXPRESS"
+        objCadena.DataSource = "localhost"
         objCadena.InitialCatalog = "bd_academico"
         objCadena.UserID = "sa"
         objCadena.Password = "123456789"
-        objCadena.IntegratedSecurity = False 'True:windows False:SQL Server'
+        objCadena.IntegratedSecurity = True 'True:windows False:SQL Server'
         objConexion.ConnectionString = objCadena.ToString()
     End Sub
 
