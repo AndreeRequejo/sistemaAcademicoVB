@@ -34,17 +34,7 @@ Public Class frm_matricula1
             gvDetalleMatricula.DataSource = dtDetalleMatricula
             gvDetalleMatricula.DataBind()
         Else
-            Dim dat As New DataTable()
-            dat.Columns.Add("matricula_id")
-            dat.Columns.Add("grupo_id")
-            dat.Columns.Add("curso")
-            dat.Columns.Add("nota_promedio")
-
-            If gvDetalleMatricula.Rows.Count = 0 Then
-                dat.Rows.Add(dat.NewRow())
-            End If
-
-            gvDetalleMatricula.DataSource = dat
+            gvDetalleMatricula.DataSource = Nothing
             gvDetalleMatricula.DataBind()
         End If
     End Sub
@@ -65,7 +55,7 @@ Public Class frm_matricula1
             Else
                 chkEstado.Checked = False
             End If
-            txtFechaBaja.Text = formatearFecha(gvMatricula.SelectedRow.Cells(5).Text)
+            txtFechaBaja.Text = formatearFecha(gvMatricula.SelectedRow.Cells(5).Text.ToString)
 
             'Lógica para iniciar el Detalle de Matrícula'
             grillaDetalleMatricula(Session("matriculaSeleccionada"))
@@ -91,6 +81,8 @@ Public Class frm_matricula1
         btnCancelarMat.Enabled = True
         txtNomEstudiante.Text = objAlumno.buscarNomAlumno(txtEstudiante.Text)
         grillaMatriculaUno()
+        gvDetalleMatricula.DataSource = Nothing
+        grillaDetalleMatriculaVacia()
     End Sub
 
     Protected Sub btnCancelarMat_Click(sender As Object, e As EventArgs) Handles btnCancelarMat.Click
@@ -257,14 +249,17 @@ Public Class frm_matricula1
     End Sub
 
     Public Function formatearFecha(fecha As String) As String
-        Dim vacio As String = ""
         If String.IsNullOrEmpty(fecha) Then
-            Return vacio
-        Else
-            Dim fechaMatricula As DateTime = DateTime.ParseExact(fecha, "yyyy-MM-dd", Nothing)
-            Return fechaMatricula.ToString("yyyy-MM-dd")
+            Return ""
         End If
 
+        Try
+            Dim fechaMatricula As DateTime = DateTime.ParseExact(fecha, "yyyy-MM-dd", Nothing)
+            Return fechaMatricula.ToString("yyyy-MM-dd")
+        Catch ex As FormatException
+            ' Manejar la excepción si el formato es incorrecto
+            Return ""
+        End Try
     End Function
 
 End Class
