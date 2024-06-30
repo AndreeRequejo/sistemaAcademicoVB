@@ -64,4 +64,20 @@ Public Class Alumno
         End Try
     End Function
 
+    Public Function buscarNomAlumno(ByVal dniAlumno As String) As String
+        Dim nomAlumno As String = ""
+        Try
+            Dim sql As String
+            sql = "select ape_paterno + ' ' + ape_materno + ' ' + nombres AS nombre_completo from alumno where numero_documento = '" & dniAlumno & "'"
+            Dim result As DataTable = objConexion.consultaSQL(sql)
+
+            If result.Rows.Count > 0 Then
+                nomAlumno = result.Rows(0)(0)
+            End If
+            Return nomAlumno
+        Catch ex As Exception
+            Return ex.Message
+        End Try
+    End Function
+
 End Class

@@ -48,7 +48,7 @@
             <div class="col-6">
                 <div class="row mb-3">
                     <div class="col-7">
-                        <input type="text" class="form-control" placeholder="Estudiante" aria-label="City" id="txtEstudiante">
+                        <asp:TextBox id="txtEstudiante" runat="server" aria-label="DNI Estudiante" placeholder="DNI Estudiante" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="col-auto">
                         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-secondary btnBuscar" />
@@ -62,7 +62,7 @@
                     <div class="row mb-3">
                         <label for="fechaMatricula" class="col-2 col-form-label">Fecha:</label>
                         <div class="col-10">
-                            <asp:TextBox ID="fechaMatricula" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaMatricula" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row mb-3" style="align-items: center !important">
@@ -78,28 +78,30 @@
                     <div class="row mb-3">
                         <label for="creditos" class="col-auto col-form-label">Crdts. Matriculados:</label>
                         <div class="col-2">
-                            <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtCreditosMat" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                         </div>
                         <label for="baja" class="col-auto col-form-label" style="margin-left: 2rem">Fecha Baja:</label>
                         <div class="col-3">
-                            <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" TextMode="Date" Style="width: 11.5rem !important"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaBaja" runat="server" CssClass="form-control" TextMode="Date" Style="width: 11.5rem !important"></asp:TextBox>
+                        </div>
+                        <div class="col-12 mt-3 d-flex justify-content-between">
+                            <asp:Button ID="btnGrabarMat" runat="server" Text="Grabar" CssClass="btn btn-success" />
+                            <asp:Button ID="btnModificarMat" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                            <asp:Button ID="btnEliminarMat" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
+                            <asp:Button ID="btnCancelarMat" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="p-3 mb-3">
                     <legend>Detalle Matrícula</legend>
                     <div class="row mb-3 align-items-center">
-                        <label for="txtCiclo" class="col-1 col-form-label">Ciclo:</label>
-                        <div class="col-2">
-                            <asp:TextBox ID="ciclo" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
                         <label for="estado" class="col-2 col-form-label">Curso:</label>
-                        <div class="col-7">
+                        <div class="col-10">
                             <asp:DropDownList ID="cboCurso" CssClass="form-select" runat="server" AutoPostBack="true">
                             </asp:DropDownList>
                         </div>
                         <div class="col-12 mt-3">
-                            <asp:GridView ID="gvDetalle" CssClass="table table-bordered" runat="server" Width="594px" AutoGenerateColumns="False" Height="170px">
+                            <asp:GridView ID="gvGrupo" CssClass="table table-bordered" runat="server" Width="600px" AutoGenerateColumns="False" Height="100px">
                                 <Columns>
                                     <asp:BoundField DataField="detalle_id" HeaderText="ID" />
                                     <asp:BoundField DataField="denominacion" HeaderText="Grupo" />
@@ -110,39 +112,42 @@
                                 </Columns>
                             </asp:GridView>
                         </div>
-                        <div class="button-row">
-                            <asp:Button ID="btnGrabar" runat="server" Text="Agregar" CssClass="btn btn-success" />
-                            <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-warning" />
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />
+                        <div class="col-12 d-flex justify-content-between">
+                            <asp:Button ID="btnGrabarDetalle" runat="server" Text="Agregar" CssClass="btn btn-success" />
+                            <asp:Button ID="btnModificarDetalle" runat="server" Text="Modificar" CssClass="btn btn-warning" />
+                            <asp:Button ID="btnEliminarDetalle" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
+                            <asp:Button ID="btnCancelarDetalle" runat="server" Text="Cancelar" CssClass="btn btn-secondary" />
                         </div>
                     </div>
                 </fieldset>
             </div>
 
             <div class="col-6">
-                <div class="p-3 mb-3">
-                    <asp:GridView ID="gvGrupo" CssClass="table table-bordered" runat="server" Width="594px" AutoGenerateColumns="False" Height="170px">
+                <asp:TextBox id="txtNomEstudiante" runat="server" aria-label="Estudiante" placeholder="Estudiante" CssClass="form-control mb-3" Width="685px" disabled></asp:TextBox>
+                <fieldset class="mb-3" style="height:294px; width: 685px; overflow: auto">
+                    <asp:GridView ID="gvMatricula" CssClass="table table-bordered" runat="server" Width="650px" AutoGenerateColumns="False" Height="100px">
                         <Columns>
-                            <asp:BoundField DataField="grupo_id" HeaderText="ID" />
-                            <asp:BoundField DataField="semestre" HeaderText="Semestre" />
-                            <asp:BoundField DataField="fecha" HeaderText="Fecha Mat." />
-                            <asp:BoundField DataField="creditos" HeaderText="Crdts. Matr." />
-                            <asp:BoundField DataField="estado" HeaderText="Estado" />
+                            <asp:BoundField DataField="matricula_id" HeaderText="ID" />
+                            <asp:BoundField DataField="codigo_semestre" HeaderText="Semestre" />
+                            <asp:BoundField DataField="fecha_matricula" HeaderText="Fecha Mat." />
+                            <asp:BoundField DataField="nro_creditos_matriculados" HeaderText="Crdts. Matr." />
+                            <asp:BoundField DataField="estado_matricula" HeaderText="Estado" />
+                            <asp:BoundField DataField="fecha_baja" HeaderText="Fecha Baja" />
                             <asp:CommandField HeaderText="✓" ShowSelectButton="True" SelectText="✓" />
                         </Columns>
                     </asp:GridView>
-                </div>
-                <div class="p-3 mb-3">
-                    <asp:GridView ID="gvDetalleMatricula" CssClass="table table-bordered" runat="server" Width="594px" AutoGenerateColumns="False" Height="170px">
+                </fieldset>
+                <fieldset class="p-3 mb-3" style="width: 685px; overflow: auto">
+                    <asp:GridView ID="gvDetalleMatricula" CssClass="table table-bordered" runat="server" Width="650px" AutoGenerateColumns="False" Height="100px">
                         <Columns>
-                            <asp:BoundField DataField="detalle_id" HeaderText="ID" />
+                            <asp:BoundField DataField="matricula_id" HeaderText="Matricula" />
+                            <asp:BoundField DataField="grupo_id" HeaderText="Grupo" />
                             <asp:BoundField DataField="curso" HeaderText="Curso" />
-                            <asp:BoundField DataField="grupo" HeaderText="Nota" />
+                            <asp:BoundField DataField="nota_promedio" HeaderText="Nota" />
                             <asp:CommandField HeaderText="✓" ShowSelectButton="True" SelectText="✓" />
                         </Columns>
                     </asp:GridView>
-                </div>
+                </fieldset>
             </div>
         </div>
     </div>
