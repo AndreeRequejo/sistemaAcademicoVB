@@ -32,18 +32,24 @@ Public Class ADO_matricula
     End Function
 
     Public Function modificar_matricula(ByVal idMatricula As Integer,
-                                      ByVal estado_matricula As Integer,
-                                      ByVal fecha_baja As String,
-                                      ByVal nroCreditos As Integer) As Integer
+                                    ByVal estado_matricula As Integer,
+                                    ByVal fecha_baja As String,
+                                    ByVal nroCreditos As Integer) As Integer
         Dim retorno As Integer
         Dim obj_comando As New SqlCommand
         obj_comando.CommandType = CommandType.StoredProcedure
         obj_comando.CommandText = "pa_modificar_matricula"
         obj_comando.Parameters.Add("@matricula_id", SqlDbType.Int).Value = idMatricula
         obj_comando.Parameters.Add("@estado_matricula", SqlDbType.Int).Value = estado_matricula
-        obj_comando.Parameters.Add("@fecha_baja", SqlDbType.Date).Value = fecha_baja
         obj_comando.Parameters.Add("@nro_creditos_matriculados", SqlDbType.Int).Value = nroCreditos
         obj_comando.Parameters.Add("@retorno", SqlDbType.Int).Direction = ParameterDirection.Output
+
+        ' Manejar el parámetro fecha_baja para que sea opcional
+        If String.IsNullOrEmpty(fecha_baja) Then
+            obj_comando.Parameters.Add("@fecha_baja", SqlDbType.Date).Value = DBNull.Value
+        Else
+            obj_comando.Parameters.Add("@fecha_baja", SqlDbType.Date).Value = Convert.ToDateTime(fecha_baja)
+        End If
 
         Try
             obj_comando.Connection = obj_conexion.getConexion()

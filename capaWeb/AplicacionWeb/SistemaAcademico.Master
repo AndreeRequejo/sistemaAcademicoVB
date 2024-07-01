@@ -38,7 +38,6 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/Pages/frm_grupo.aspx">Grupos</a></li>
-                <li><a class="dropdown-item" href="/Pages/frm_horario.aspx">Horarios</a></li>
                 <li><a class="dropdown-item" href="/Pages/frm_matricula.aspx">Matrícula</a></li>
               </ul>
             </li>

@@ -28,23 +28,73 @@ Public Class DetalleMatricula
         Return objConexion.consultaSQL(sql)
     End Function
 
-    Public Function obtenerGruposCurso(ByVal cursoId As Integer) As DataTable
+    Public Function obtenerGruposCurso(ByVal semestre As String, ByVal cursoId As Integer) As DataTable
         Dim sql As String
-        sql = "SELECT g.grupo_id, denominacion, CONVERT(VARCHAR(5), h.h_inicio, 108) as hora_inicio, CONVERT(VARCHAR(5), h.h_final, 108) as hora_fin, 
-                CASE 
-                   WHEN dia = 1 THEN 'Lunes'
-                   WHEN dia = 2 THEN 'Martes'
-                   WHEN dia = 3 THEN 'Miércoles'
-                   WHEN dia = 4 THEN 'Jueves'
-                   WHEN dia = 5 THEN 'Viernes'
-                   WHEN dia = 6 THEN 'Sábado'
-                   WHEN dia = 7 THEN 'Domingo'
-                END AS dia
+        sql = "SELECT g.grupo_id, denominacion, COALESCE(
+        CASE 
+            WHEN h.dia = 1 THEN 'Lunes'
+            WHEN h.dia = 2 THEN 'Martes'
+            WHEN h.dia = 3 THEN 'Miércoles'
+            WHEN h.dia = 4 THEN 'Jueves'
+            WHEN h.dia = 5 THEN 'Viernes'
+            WHEN h.dia = 6 THEN 'Sábado'
+            WHEN h.dia = 7 THEN 'Domingo'
+            ELSE 'Día no especificado'
+			END, 'Día no especificado') + ' ' + 
+			COALESCE(CONVERT(VARCHAR(5), h.h_inicio, 108), 'Hora no especificada') + ' - ' + 
+			COALESCE(CONVERT(VARCHAR(5), h.h_final, 108), 'Hora no especificada') + ' ' + 
+			COALESCE(a.descripcion_ambiente, 'Ambiente no especificado') AS horario_formato,
+			d.ape_paterno + ' ' + d.ape_materno + ' ' + d.nombres as docente
                 FROM grupo g
                 INNER JOIN horario h ON h.grupo_id = g.grupo_id
+				INNER JOIN ambiente a ON a.ambiente_id = h.ambiente_id
                 INNER JOIN docente d ON d.docente_id = g.docente_id
                 INNER JOIN curso c ON c.curso_id = g.curso_id
-                WHERE g.semestre_id = '2024-1' AND c.curso_id = " & cursoId
+                WHERE g.semestre_id = '" & semestre & "' AND c.curso_id = " & cursoId
+        Return objConexion.consultaSQL(sql)
+    End Function
+
+    Public Function obtenerCreditosCurso(ByVal grupoId As Integer) As Integer
+        Dim creditos As Integer = 0
+        Try
+            Dim sql As String
+            sql = "SELECT creditos FROM CURSO C
+                    INNER JOIN GRUPO G ON G.curso_id = C.curso_id
+                    WHERE G.grupo_id = " & grupoId
+            Dim result As DataTable = objConexion.consultaSQL(sql)
+
+            If result.Rows.Count > 0 Then
+                creditos = Convert.ToInt32(result.Rows(0)(0))
+            End If
+            Return creditos
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+    Public Function obtenerHorarioGrupo(ByVal grupoId As Integer) As DataTable
+        Dim sql As String
+        sql = "SELECT g.grupo_id, denominacion, COALESCE(
+        CASE 
+            WHEN h.dia = 1 THEN 'Lunes'
+            WHEN h.dia = 2 THEN 'Martes'
+            WHEN h.dia = 3 THEN 'Miércoles'
+            WHEN h.dia = 4 THEN 'Jueves'
+            WHEN h.dia = 5 THEN 'Viernes'
+            WHEN h.dia = 6 THEN 'Sábado'
+            WHEN h.dia = 7 THEN 'Domingo'
+            ELSE 'Día no especificado'
+			END, 'Día no especificado') + ' ' + 
+			COALESCE(CONVERT(VARCHAR(5), h.h_inicio, 108), 'Hora no especificada') + ' - ' + 
+			COALESCE(CONVERT(VARCHAR(5), h.h_final, 108), 'Hora no especificada') + ' ' + 
+			COALESCE(a.descripcion_ambiente, 'Ambiente no especificado') AS horario_formato,
+			d.ape_paterno + ' ' + d.ape_materno + ' ' + d.nombres as docente
+                FROM grupo g
+                LEFT JOIN horario h ON h.grupo_id = g.grupo_id
+				LEFT JOIN ambiente a ON a.ambiente_id = h.ambiente_id
+                LEFT JOIN docente d ON d.docente_id = g.docente_id
+                LEFT JOIN curso c ON c.curso_id = g.curso_id
+                WHERE g.grupo_id = " & grupoId
         Return objConexion.consultaSQL(sql)
     End Function
 

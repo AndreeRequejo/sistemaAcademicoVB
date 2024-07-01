@@ -105,16 +105,15 @@
                                 <Columns>
                                     <asp:BoundField DataField="grupo_id" HeaderText="ID" />
                                     <asp:BoundField DataField="denominacion" HeaderText="Grupo" />
-                                    <asp:BoundField DataField="hora_inicio" HeaderText="Hr. Inicio" />
-                                    <asp:BoundField DataField="hora_fin" HeaderText="Hr. Fin" />
-                                    <asp:BoundField DataField="dia" HeaderText="Dia" />
+                                    <asp:BoundField DataField="horario_formato" HeaderText="Horario" />
+                                    <asp:BoundField DataField="docente" HeaderText="Docente" />
                                     <asp:CommandField HeaderText="✓" ShowSelectButton="True" SelectText="✓" />
                                 </Columns>
                             </asp:GridView>
                         </div>
                         <div class="col-12 d-flex justify-content-between">
                             <div>
-                                <asp:TextBox id="txtNota" runat="server" aria-label="Nota" placeholder="Nota" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox id="txtNota" runat="server" aria-label="Nota" placeholder="Nota" CssClass="form-control" TextMode="Number" min="0" max="20" Width="208px"></asp:TextBox>
                             </div>
                             <div>
                                 <asp:Button ID="btnModificarDetalle" runat="server" Text="Modificar" CssClass="btn btn-warning" />

@@ -71,6 +71,16 @@ Public Class frm_matricula1
             cboCurso.DataBind()
             cboCurso.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
 
+            If Session("bandera") = 0 Then
+                btnModificarMat.Enabled = False
+                btnEliminarMat.Enabled = False
+                txtFechaBaja.Enabled = False
+                txtFechaMatricula.Enabled = False
+                txtCreditosMat.Enabled = False
+                txtSemestre.Enabled = False
+                cboCurso.Enabled = False
+            End If
+
         Catch ex As Exception
             MsgBox("Ocurrio un Error al procesar la solicitud")
         End Try
@@ -80,14 +90,21 @@ Public Class frm_matricula1
         Try
             Dim idMatricula As Integer = Session("matriculaSeleccionada")
             Dim idGrupo As Integer = Convert.ToInt32(gvGrupo.SelectedRow.Cells(0).Text.ToString)
+            Dim creditos As Integer = Convert.ToInt32(txtCreditosMat.Text)
+            creditos += objDetMatricula.obtenerCreditosCurso(idGrupo)
+            txtCreditosMat.Text = creditos.ToString()
+            objMatricula.modificar_matricula(Session("matriculaSeleccionada"), 1, txtFechaBaja.Text, creditos)
+            grillaMatriculaUno()
 
             Dim retorno As Integer = objDetMatricula.agregar_detalle_matricula(idMatricula, idGrupo)
+
             If retorno = 0 Then
                 MsgBox("Detalle de Matrícula registrado")
                 grillaDetalleMatricula(idMatricula)
             Else
                 MsgBox("Detalle de Matrícula no registrado")
             End If
+
         Catch ex As Exception
             MsgBox("Ocurrio un Error al procesar la solicitud")
         End Try
@@ -100,6 +117,16 @@ Public Class frm_matricula1
             Session("grupoSeleccionado") = Convert.ToInt32(gvDetalleMatricula.SelectedRow.Cells(1).Text)
             btnModificarDetalle.Enabled = True
             btnEliminarDetalle.Enabled = True
+            txtNota.Text = gvDetalleMatricula.SelectedRow.Cells(3).Text
+            gvGrupo.DataSource = objDetMatricula.obtenerHorarioGrupo(Session("grupoSeleccionado"))
+            gvGrupo.DataBind()
+
+            If Session("bandera") = 0 Then
+                btnModificarDetalle.Enabled = False
+                btnEliminarDetalle.Enabled = False
+                txtNota.Enabled = False
+            End If
+
         Catch ex As Exception
             MsgBox("Ocurrio un Error al procesar la solicitud")
         End Try
@@ -107,17 +134,20 @@ Public Class frm_matricula1
 
     Private Sub cboCurso_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCurso.SelectedIndexChanged
         Dim cursoId As Integer = cboCurso.SelectedValue
-        gvGrupo.DataSource = objDetMatricula.obtenerGruposCurso(cursoId)
+        Dim semestre As String = txtSemestre.Text
+        gvGrupo.DataSource = objDetMatricula.obtenerGruposCurso(semestre, cursoId)
         gvGrupo.DataBind()
     End Sub
 
     Protected Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        Session("bandera") = 0
         grillaMatricula()
         iniciarControles()
         txtNomEstudiante.Text = objAlumno.buscarNomAlumno(txtEstudiante.Text)
     End Sub
 
     Protected Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        Session("bandera") = 1
         obtenerFechaActual()
         llenarTxtSemestre()
         chkEstado.Enabled = True
@@ -209,11 +239,25 @@ Public Class frm_matricula1
         Else
             MsgBox("Detalle Matrícula no actualizada")
         End If
+
+        btnModificarDetalle.Enabled = False
+        btnEliminarDetalle.Enabled = False
+        txtNota.Text = ""
+        txtNota.Enabled = False
+        cboCurso.SelectedIndex() = 0
+        gvGrupo.DataSource = Nothing
+        gvGrupo.DataBind()
     End Sub
 
     Protected Sub btnEliminarDetalle_Click(sender As Object, e As EventArgs) Handles btnEliminarDetalle.Click
         Dim idMatricula As Integer = Convert.ToInt32(Session("matriculaSeleccionada"))
         Dim idGrupo As Integer = Convert.ToInt32(Session("grupoSeleccionado"))
+
+        Dim creditos As Integer = Convert.ToInt32(txtCreditosMat.Text)
+        creditos -= objDetMatricula.obtenerCreditosCurso(idGrupo)
+        txtCreditosMat.Text = creditos.ToString()
+        objMatricula.modificar_matricula(Session("matriculaSeleccionada"), 1, txtFechaBaja.Text, creditos)
+        grillaMatriculaUno()
 
         Dim retorno As Integer = objDetMatricula.eliminar_detalle_matricula(idMatricula, idGrupo)
         If retorno = 0 Then
@@ -222,6 +266,15 @@ Public Class frm_matricula1
         Else
             MsgBox("Detalle Matrícula no eliminada")
         End If
+
+        btnModificarDetalle.Enabled = False
+        btnEliminarDetalle.Enabled = False
+        txtNota.Enabled = False
+        txtNota.Text = ""
+        cboCurso.SelectedIndex() = 0
+        gvGrupo.DataSource = Nothing
+        gvGrupo.DataBind()
+
     End Sub
 
     Protected Sub btnCancelarDetalle_Click(sender As Object, e As EventArgs) Handles btnCancelarDetalle.Click
@@ -254,9 +307,8 @@ Public Class frm_matricula1
         Dim dt As New DataTable()
         dt.Columns.Add("grupo_id")
         dt.Columns.Add("denominacion")
-        dt.Columns.Add("hora_inicio")
-        dt.Columns.Add("hora_fin")
-        dt.Columns.Add("dia")
+        dt.Columns.Add("horario_formato")
+        dt.Columns.Add("docente")
 
         If gvGrupo.Rows.Count = 0 Then
             dt.Rows.Add(dt.NewRow())
