@@ -274,7 +274,6 @@ Public Class frm_matricula1
         cboCurso.SelectedIndex() = 0
         gvGrupo.DataSource = Nothing
         gvGrupo.DataBind()
-
     End Sub
 
     Protected Sub btnCancelarDetalle_Click(sender As Object, e As EventArgs) Handles btnCancelarDetalle.Click
@@ -285,6 +284,8 @@ Public Class frm_matricula1
         txtNota.Enabled = False
         gvGrupo.DataSource = Nothing
         gvGrupo.DataBind()
+        gvDetalleMatricula.DataSource = Nothing
+        gvDetalleMatricula.DataBind()
     End Sub
 
     Public Sub iniciarControles()

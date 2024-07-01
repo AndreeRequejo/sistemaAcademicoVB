@@ -17,7 +17,7 @@ Public Class frm_grupo1
         If Not IsPostBack Then
             controles_iniciales()
             cboCurso.Items.Insert(0, New ListItem("Seleccione una opcion", "0"))
-            cboAmbiente.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+            cboAmbiente.Items.Insert(0, New ListItem("Seleccione", "0"))
             llenarCboFacultad()
             llenarCboDocente()
             llenarTxtSemestre()
@@ -221,9 +221,6 @@ Public Class frm_grupo1
         txtHorario.Text = horario_id
 
     End Sub
-
-
-
     Public Sub llenarCboFacultad()
         Try
             cboFacultad.DataSource = objFacultad.listar_facultades()
@@ -295,7 +292,7 @@ Public Class frm_grupo1
 
     Public Sub llenarCboDias()
         Try
-            cboDias.Items.Add(New ListItem("Seleccione un dia", "0"))
+            cboDias.Items.Add(New ListItem("Seleccione", "0"))
             cboDias.Items.Add(New ListItem("Lunes", "1"))
             cboDias.Items.Add(New ListItem("Martes", "2"))
             cboDias.Items.Add(New ListItem("Miércoles", "3"))
@@ -313,7 +310,7 @@ Public Class frm_grupo1
             cboTipoAmb.DataTextField = "descripcion_tipoambiente"
             cboTipoAmb.DataValueField = "tipoambiente_id"
             cboTipoAmb.DataBind()
-            cboTipoAmb.Items.Insert(0, New ListItem("Seleccione una opción", "0"))
+            cboTipoAmb.Items.Insert(0, New ListItem("Seleccione", "0"))
         Catch ex As Exception
             MsgBox("Error al listar tipos de ambiente")
         End Try

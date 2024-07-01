@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Grupos Horarios" ResponseEncoding="utf-8" ContentType="text/html; charset=utf-8" Debug="True" Language="vb" AutoEventWireup="false" MasterPageFile="~/SistemaAcademico.Master" CodeBehind="frm_grupo.aspx.vb" Inherits="AplicacionWeb.frm_grupo1" %>
+﻿<%@ Page Title="Grupos Horarios" ResponseEncoding="utf-8" ContentType="text/html; charset=utf-8" Debug="True" Language="vb" AutoEventWireup="false" MasterPageFile="~/SistemaAcademico.Master" CodeBehind="frm_grupoHorario.aspx.vb" Inherits="AplicacionWeb.frm_grupo1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -15,14 +15,14 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            width: 450px;
+            width: 100%;
         }
 
-            .form-group input,
-            .form-group select {
-                height: 40px;
-                width: 100%;
-            }
+        .form-group input,
+        .form-group select {
+            height: 40px;
+            width: 100%;
+        }
 
         .title {
             text-align: center;
@@ -63,12 +63,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1rem;
         }
 
-            .btn-content button {
-                flex: 1;
-            }
+        .btn-content button {
+            flex: 1;
+        }
 
         label.for {
             font-weight: bold;
@@ -90,22 +89,21 @@
             color: #212529;
             border-collapse: collapse;
         }
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
 
-            .table th,
-            .table td {
-                padding: 0.75rem;
-                vertical-align: top;
-                border-top: 1px solid #dee2e6;
-            }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
 
-            .table thead th {
-                vertical-align: bottom;
-                border-bottom: 2px solid #dee2e6;
-            }
-
-            .table tbody + tbody {
-                border-top: 2px solid #dee2e6;
-            }
+        .table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
 
         .table-sm th,
         .table-sm td {
@@ -116,15 +114,15 @@
             border: 1px solid #dee2e6;
         }
 
-            .table-bordered th,
-            .table-bordered td {
-                border: 1px solid #dee2e6;
-            }
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
 
-            .table-bordered thead th,
-            .table-bordered thead td {
-                border-bottom-width: 2px;
-            }
+        .table-bordered thead th,
+        .table-bordered thead td {
+            border-bottom-width: 2px;
+        }
 
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: rgba(0, 0, 0, 0.05);
@@ -143,8 +141,11 @@
             pointer-events: none;
             opacity: 0.6;
         }
+        a {
+            text-decoration: none;
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Transacción Grupos Horarios</h2>
@@ -158,7 +159,7 @@
                         <asp:TextBox ID="txtSemestre" CssClass="form-control" runat="server" Height="40px" Width="35%" Enabled="false"></asp:TextBox>
                         <asp:TextBox ID="txtIdGrupo" runat="server" Height="40px" hidden></asp:TextBox>
                         <label for="cboFacultad" class="for">Facultad:</label>
-                        <asp:DropDownList ID="cboFacultad" CssClass="form-select" runat="server" Height="40px" Width="100%" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="cboFacultad" CssClass="form-select" runat="server" Height="40px" Width="" AutoPostBack="true"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row">
@@ -184,13 +185,13 @@
                         <label for="cboCurso" class="for">Curso:</label>
                         <asp:DropDownList ID="cboCurso" CssClass="form-select" runat="server" Height="40px"></asp:DropDownList>
                         <asp:LinkButton ID="btnBuscar" CssClass="btn btn-primary btn-icon" runat="server" Text="<i class='fas fa-search'></i>" OnClick="btnBuscar_Click" />&nbsp;
-                        <asp:LinkButton ID="btnBuscar1" CssClass="btn btn-info btn-icon" runat="server" Text="<i class='fas fa-search'></i>" OnClick="btnBuscar1_Click" />&nbsp;
+                        <asp:LinkButton ID="btnBuscar1" CssClass="btn btn-secondary btn-icon" runat="server" Text="<i class='fa-solid fa-arrow-down-a-z'></i>" OnClick="btnBuscar1_Click" />&nbsp;
                     </div>
                 </div>
                 <div class="row">
                     <div class="col" style="flex-basis: 100%;">
                         <label for="cboDocente" class="for">Docente:</label>
-                        <asp:DropDownList ID="cboDocente" CssClass="form-select" runat="server" Height="40px"></asp:DropDownList>
+                        <asp:DropDownList ID="cboDocente" CssClass="form-select" runat="server" Height="40px" Width="430px"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row">
@@ -199,11 +200,11 @@
                 </div>
                 <div class="row">
                     <div class="col btn-content" style="flex-basis: 100%;">
-                        <asp:LinkButton ID="btnNuevo" CssClass="btn btn-primary" runat="server" Text="<i class='bx bxs-file-plus' ></i>" />&nbsp;
+                        <asp:LinkButton ID="btnNuevo" CssClass="btn btn-primary" runat="server" Text="<i class='fa-solid fa-plus'></i>" />&nbsp;
                        
-                        <asp:LinkButton ID="btnGrabar" CssClass="btn btn-success" runat="server" Text="<i class='bx bxs-cloud-upload' ></i>" />&nbsp;
+                        <asp:LinkButton ID="btnGrabar" CssClass="btn btn-success" runat="server" Text="<i class='fa-solid fa-floppy-disk'></i>" />&nbsp;
                        
-                        <asp:LinkButton ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="<i class='bx bxs-file-plus' ></i>" />&nbsp;
+                        <asp:LinkButton ID="btnModificar" CssClass="btn btn-warning" runat="server" Text="<i class='fa-solid fa-pen-to-square'></i>" />&nbsp;
                        
                         <asp:LinkButton ID="btnEliminar" CssClass="btn btn-danger" runat="server" Text="<i class='bx bxs-no-entry' ></i>" />&nbsp;
                        
@@ -214,13 +215,13 @@
         </fieldset>
         <fieldset style="flex: 3;">
             <legend>Grupos</legend>
-            <asp:GridView ID="gvGrupos" CssClass="table table-bordered table-striped table-hover" runat="server" Width="100%" AutoGenerateColumns="False" Height="170px">
+            <asp:GridView ID="gvGrupos" CssClass="table table-bordered table-striped table-hover text-center" runat="server" Width="100%" AutoGenerateColumns="False" Height="170px">
                 <Columns>
                     <asp:BoundField DataField="grupo_id" HeaderText="ID" />
                     <asp:BoundField DataField="nombre_curso" HeaderText="Curso" />
                     <asp:BoundField DataField="denominacion" HeaderText="Denominacion" />
                     <asp:BoundField DataField="estado_grupo" HeaderText="Estado" />
-                    <asp:CommandField HeaderText="√" ShowSelectButton="True" SelectText="√" />
+                    <asp:CommandField HeaderText="Acción" ShowSelectButton="True" SelectText="➕" />
                 </Columns>
             </asp:GridView>
         </fieldset>
@@ -248,37 +249,37 @@
                         <label for="horaFin" class="for">Hora Fin:</label>
                         <asp:TextBox ID="horaFin" runat="server" CssClass="form-control" TextMode="Time" Height="39px" Width="50%"></asp:TextBox>
                     </div>
-                <div class="row">
-                    <div class="col" style="flex-basis: 45%;">
-                        <label for="txtGrupo" class="for">Grupo_ID.:</label>
-                        <asp:TextBox ID="txtGrupo" CssClass="form-control" runat="server" Height="40px" Width="14%" ReadOnly="True"></asp:TextBox>
-                         <asp:TextBox ID="txtHorario" runat="server" Height="40px" hidden></asp:TextBox>
+                    <div class="row">
+                        <div class="col" style="flex-basis: 45%;">
+                            <label for="txtGrupo" class="for" hidden>Grupo_ID.:</label>
+                            <asp:TextBox ID="txtGrupo" CssClass="form-control" runat="server" Height="40px" Width="14%" ReadOnly="True" hidden></asp:TextBox>
+                            <asp:TextBox ID="txtHorario" runat="server" Height="40px" hidden></asp:TextBox>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col btn-content" style="flex-basis: 100%;">
+                    <div class="row">
+                        <div class="col btn-content" style="flex-basis: 100%;">
 
-                        <asp:LinkButton ID="btnNuevoH" CssClass="btn btn-primary" runat="server" Text="<i class='bx bxs-file-plus' ></i>" />&nbsp;
+                            <asp:LinkButton ID="btnNuevoH" CssClass="btn btn-primary" runat="server" Text="<i class='fa-solid fa-plus'></i>" />&nbsp;
                        
-                        <asp:LinkButton ID="btnGrabarH" CssClass="btn btn-success" runat="server" Text="<i class='bx bxs-cloud-upload' ></i>" />&nbsp;
+                        <asp:LinkButton ID="btnGrabarH" CssClass="btn btn-success" runat="server" Text="<i class='fa-solid fa-floppy-disk'></i>" />&nbsp;
                        
-                        <asp:LinkButton ID="btnModificarH" CssClass="btn btn-warning" runat="server" Text="<i class='bx bxs-file-plus' ></i>" />&nbsp;
+                        <asp:LinkButton ID="btnModificarH" CssClass="btn btn-warning" runat="server" Text="<i class='fa-solid fa-pen-to-square'></i>" />&nbsp;
                        
                         <asp:LinkButton ID="btnEliminarH" CssClass="btn btn-danger" runat="server" Text="<i class='bx bxs-no-entry' ></i>" />&nbsp;
                        
                         <asp:LinkButton ID="btnCancelarH" CssClass="btn btn-secondary" runat="server" Text="<i class='bx bx-notification-off' ></i>" />
+                        </div>
                     </div>
                 </div>
-            </div>
         </fieldset>
         <fieldset style="flex: 3;">
             <legend>Horario</legend>
-            <asp:GridView ID="gvHorarios" CssClass="table table-bordered table-striped table-hover" runat="server" Width="100%" AutoGenerateColumns="False" Height="170px">
+            <asp:GridView ID="gvHorarios" CssClass="table table-bordered table-striped table-hover text-center" runat="server" Width="100%" AutoGenerateColumns="False" Height="170px">
                 <Columns>
                     <asp:BoundField DataField="horario_id" HeaderText="ID" />
                     <asp:BoundField DataField="denominacion" HeaderText="Denominacion" />
                     <asp:BoundField DataField="horario_formato" HeaderText="Horario" />
-                    <asp:CommandField HeaderText="√" ShowSelectButton="True" SelectText="√" />
+                    <asp:CommandField HeaderText="Acción" ShowSelectButton="True" SelectText="✏️" />
                 </Columns>
             </asp:GridView>
         </fieldset>

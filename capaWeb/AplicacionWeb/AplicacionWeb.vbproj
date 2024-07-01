@@ -95,7 +95,7 @@
     <Content Include="indexSA.aspx" />
     <Content Include="Pages\frm_escuela.aspx" />
     <Content Include="Pages\frm_facultad.aspx" />
-    <Content Include="Pages\frm_grupo.aspx" />
+    <Content Include="Pages\frm_grupoHorario.aspx" />
     <Content Include="Pages\frm_horario.aspx" />
     <Content Include="Pages\frm_matricula.aspx" />
     <Content Include="Web.config" />
@@ -141,11 +141,11 @@
       <DependentUpon>frm_facultad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Pages\frm_grupo.aspx.designer.vb">
-      <DependentUpon>frm_grupo.aspx</DependentUpon>
+    <Compile Include="Pages\frm_grupoHorario.aspx.designer.vb">
+      <DependentUpon>frm_grupoHorario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\frm_grupo.aspx.vb">
-      <DependentUpon>frm_grupo.aspx</DependentUpon>
+    <Compile Include="Pages\frm_grupoHorario.aspx.vb">
+      <DependentUpon>frm_grupoHorario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Pages\frm_horario.aspx.designer.vb">

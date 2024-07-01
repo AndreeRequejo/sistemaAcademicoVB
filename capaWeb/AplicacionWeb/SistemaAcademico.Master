@@ -37,7 +37,7 @@
                 Transacciones
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/Pages/frm_grupo.aspx">Grupos</a></li>
+                <li><a class="dropdown-item" href="/Pages/frm_grupoHorario.aspx">Grupos Horarios</a></li>
                 <li><a class="dropdown-item" href="/Pages/frm_matricula.aspx">Matrícula</a></li>
               </ul>
             </li>
