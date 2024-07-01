@@ -35,7 +35,7 @@ where c.curso_id= " & nomEsc & " and g.semestre_id= '" & nomS & "'"
     END AS ProximaDenominacion
 FROM 
     grupo 
-WHERE 
+WHERE semestre_id = '2024-1' AND 
     curso_id = " & nomEsc & ""
         Return objConexion.consultaSQL(sql)
     End Function
