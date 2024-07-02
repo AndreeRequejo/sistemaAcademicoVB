@@ -58,7 +58,7 @@
                         <asp:LinkButton ID="btnBuscar" runat="server" Text="<i class='fas fa-search'></i>" CssClass="btn btn-secondary btnBuscar" OnClick="btnBuscar_Click"/>
                     </div>
                     <div class="col-auto">
-                        <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary btnNuevo" runat="server" Text="<i class='fa-solid fa-plus'></i>" OnClick="btnNuevo_Click" />&nbsp;
+                        <asp:LinkButton ID="btnNuevo" CssClass="btn btn-primary btnNuevo" runat="server" Text="<i class='fa-solid fa-plus'></i>" OnClick="btnNuevo_Click" />&nbsp;
                     </div>
                 </div>
                 <fieldset class="p-3 mb-3">

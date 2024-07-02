@@ -121,12 +121,6 @@ Public Class frm_matricula1
             gvGrupo.DataSource = objDetMatricula.obtenerHorarioGrupo(Session("grupoSeleccionado"))
             gvGrupo.DataBind()
 
-            If Session("bandera") = 0 Then
-                btnModificarDetalle.Enabled = False
-                btnEliminarDetalle.Enabled = False
-                txtNota.Enabled = False
-            End If
-
         Catch ex As Exception
             MsgBox("Ocurrio un Error al procesar la solicitud")
         End Try

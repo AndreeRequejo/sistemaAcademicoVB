@@ -32,13 +32,13 @@ Partial Public Class frm_matricula1
     Protected WithEvents btnBuscar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control LinkButton1.
+    '''Control btnNuevo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents btnNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control txtFechaMatricula.
