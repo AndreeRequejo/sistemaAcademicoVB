@@ -157,4 +157,22 @@ INNER JOIN
 where c.nombre_curso = '" & nomEsc & "' and g.denominacion = '" & nomDem & "' order by g.semestre_id desc"
         Return objConexion.consultaSQL(sql)
     End Function
+
+
+    Public Function buscarCurso(ByVal desc As Integer) As String
+        Dim idAmbRet As Integer = 0
+        Try
+            Dim sql As String
+            sql = "select nombre_curso from curso where curso_id=" & desc & ""
+            Dim result As DataTable = objConexion.consultaSQL(sql)
+
+            If result.Rows.Count > 0 Then
+                idAmbRet = Convert.ToInt32(result.Rows(0)(0))
+            End If
+            Return idAmbRet
+        Catch ex As Exception
+
+        End Try
+    End Function
+
 End Class

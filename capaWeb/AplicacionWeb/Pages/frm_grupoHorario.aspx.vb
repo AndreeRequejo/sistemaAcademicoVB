@@ -58,7 +58,6 @@ Public Class frm_grupo1
 
     Protected Sub btnBuscar1_Click(sender As Object, e As EventArgs)
         If Not btnNuevo.Enabled Then
-            MsgBox("btnNuevo está deshabilitado.")
             Try
                 ' Llamar a la función para obtener la próxima denominación
                 Dim Dem As DataTable = objGrupo.denominacion_grupos(Integer.Parse(cboCurso.SelectedValue))
@@ -82,6 +81,19 @@ Public Class frm_grupo1
             HabilitarBoton(btnEliminar, True)
             HabilitarBoton(btnCancelar, True)
             HabilitarBoton(btnBuscar1, False)
+
+            txtGrupo.Text = ""
+            cboTipoAmb.ClearSelection()
+            cboAmbiente.ClearSelection()
+            horaIni.Text = ""
+            horaFin.Text = ""
+            cboDias.ClearSelection()
+            HabilitarBoton(btnNuevoH, False)
+            HabilitarBoton(btnGrabarH, True)
+            HabilitarBoton(btnModificarH, False)
+            HabilitarBoton(btnEliminarH, False)
+            HabilitarBoton(btnCancelarH, True)
+
 
             Dim name_curso As String = gvGrupos.SelectedRow.Cells(1).Text.ToString()
             Dim dem_grupo As String = gvGrupos.SelectedRow.Cells(2).Text.ToString()
@@ -152,6 +164,7 @@ Public Class frm_grupo1
                 Dim horarios As DataTable = objHorario.listar_grupo_horario(name_curso, dem_grupo)
                 gvHorarios.DataSource = horarios
                 gvHorarios.DataBind()
+
             ElseIf (ver_1 = "0") Then
 
                 ' Asignar los demás valores
@@ -333,7 +346,9 @@ Public Class frm_grupo1
             gvGrupos.DataSource = grupos
             gvGrupos.DataBind()
 
-            Dim horarios As DataTable = objHorario.listar_grupo_horario(Convert.ToInt32(cboCurso.SelectedValue), txtDenominacion.Text)
+            Dim nombre_curso As String = objHorario.buscarCurso(Convert.ToInt32(cboCurso.SelectedValue))
+
+            Dim horarios As DataTable = objHorario.listar_grupo_horario(nombre_curso, txtDenominacion.Text)
             gvHorarios.DataSource = horarios
             gvHorarios.DataBind()
         Catch ex As Exception
@@ -379,8 +394,8 @@ Public Class frm_grupo1
         HabilitarBoton(btnBuscar1, True)
     End Sub
 
+
     Protected Sub btnNuevoH_Click(sender As Object, e As EventArgs) Handles btnNuevoH.Click
-        txtGrupo.Text = ""
         cboTipoAmb.ClearSelection()
         cboAmbiente.ClearSelection()
         horaIni.Text = ""
@@ -392,6 +407,8 @@ Public Class frm_grupo1
         HabilitarBoton(btnEliminarH, False)
         HabilitarBoton(btnCancelarH, True)
     End Sub
+
+
 
     Protected Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Try
