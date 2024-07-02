@@ -8,7 +8,7 @@ Public Class clsConexionSQL
 
     'Constructor:'
     Sub New()
-        objCadena.DataSource = "localhost"
+        objCadena.DataSource = "LAPTOP-PGBU6MEJ\SQLEXPRESS"
         objCadena.InitialCatalog = "bd_academico"
         objCadena.UserID = "sa"
         objCadena.Password = "123456789"

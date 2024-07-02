@@ -160,14 +160,14 @@ where c.nombre_curso = '" & nomEsc & "' and g.denominacion = '" & nomDem & "' or
 
 
     Public Function buscarCurso(ByVal desc As Integer) As String
-        Dim idAmbRet As Integer = 0
+        Dim idAmbRet As String = ""
         Try
             Dim sql As String
             sql = "select nombre_curso from curso where curso_id=" & desc & ""
             Dim result As DataTable = objConexion.consultaSQL(sql)
 
             If result.Rows.Count > 0 Then
-                idAmbRet = Convert.ToInt32(result.Rows(0)(0))
+                idAmbRet = result.Rows(0)(0)
             End If
             Return idAmbRet
         Catch ex As Exception

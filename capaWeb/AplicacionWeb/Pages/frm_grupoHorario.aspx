@@ -259,7 +259,7 @@
                     <div class="row">
                         <div class="col btn-content" style="flex-basis: 100%;">
 
-                        <asp:LinkButton ID="btnNuevoH" CssClass="btn btn-primary" runat="server" Text="<i class='fa-solid fa-plus'></i>" />&nbsp;
+                        <asp:LinkButton ID="btnNuevoH" CssClass="btn btn-primary" runat="server" Text="<i class='fa-solid fa-plus'></i>" hidden/>&nbsp;
                        
                         <asp:LinkButton ID="btnGrabarH" CssClass="btn btn-success" runat="server" Text="<i class='fa-solid fa-floppy-disk'></i>" />&nbsp;
                        
